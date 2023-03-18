@@ -4,20 +4,25 @@ using MagicVilla_API.Repository.IRepostiory;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace MagicVilla_API.Controllers
+namespace MagicVilla_API.Controllers.v1
 {
-    [Route("api/[controller]")]
     //[Route("api/UsersAuthAPI")]
+
     [ApiController]
+    [Route("api/v{version:apiversion}/[controller]")]
+    [ApiVersionNeutral]
     public class UsersAuthAPIController : Controller
     {
         private readonly IUserRepository _userRepo;
         protected APIResponse _response;
+
         public UsersAuthAPIController(IUserRepository userRepo)
         {
             _userRepo = userRepo;
             _response = new();
         }
+
+
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO model)
@@ -37,6 +42,8 @@ namespace MagicVilla_API.Controllers
             _response.Result = loginResponse;
             return Ok(_response);
         }
+
+
 
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterationRequestDTO model)

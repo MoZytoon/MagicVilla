@@ -20,8 +20,6 @@ builder.Services.AddHttpClient<IAuthService, AuthService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddDistributedMemoryCache();
 
-//IdentityModelEventSource.ShowPII = true;
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -34,8 +32,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 //add authorization
-builder.Services.AddAuthorization();
-
+//builder.Services.AddAuthorization();
 
 builder.Services.AddSession(options =>
 {

@@ -1,4 +1,4 @@
-﻿using MagicVilla_Utility;
+﻿ using MagicVilla_Utility;
 using MagicVilla_Web.Models;
 using MagicVilla_Web.Models.Dto;
 using MagicVilla_Web.Services.IServices;
@@ -22,17 +22,20 @@ namespace MagicVilla_Web.Services
             {
                 ApiType = SD.ApiType.POST,
                 Data = loginRequestDTO,
-                Url = this.villaUrl + "/api/UsersAuthAPI/Login",
+                Url = this.villaUrl + "/api/v1/UsersAuthAPI/Login",
             });
         }
 
         public Task<T> RegisterAsync<T>(RegisterationRequestDTO registerationRequestDTO)
         {
+            if (string.IsNullOrWhiteSpace(registerationRequestDTO.Role))
+                registerationRequestDTO.Role = "customer";
+
             return SendAsync<T>(new APIRequest
             {
                 ApiType = SD.ApiType.POST,
                 Data = registerationRequestDTO,
-                Url = this.villaUrl + "/api/UsersAuthAPI/Register",
+                Url = this.villaUrl + "/api/v1/UsersAuthAPI/Register",
             });
         }
     }

@@ -7,6 +7,11 @@ namespace MagicVilla_API.Repository.IRepostiory
     {
         bool IsUniqueUser(string username);
         Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO);
-        Task<LocalUser> Register(RegisterationRequestDTO registerationRequestDTO);
+
+        //for JWT
+        //Task<LocalUser> Register(RegisterationRequestDTO registerationRequestDTO);
+
+        //for Identity
+        Task<UserDTO> Register(RegisterationRequestDTO registerationRequestDTO);
     }
 }

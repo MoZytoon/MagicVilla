@@ -2,7 +2,13 @@
 {
     public class LoginResponseDTO
     {
-        public LocalUser User { get; set; }
+        public UserDTO User { get; set; }
         public string Token { get; set; }
+
+        //for Jwt
+        //public LocalUser User { get; set; }
+
+        //when use Identity we get role form the token here returned null & exception .
+        //public string Role { get; set; }
     }
 }

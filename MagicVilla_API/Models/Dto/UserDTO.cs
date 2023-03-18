@@ -1,4 +1,4 @@
-﻿namespace MagicVilla_Web.Models
+﻿namespace MagicVilla_API.Models.Dto
 {
     public class UserDTO
     {
@@ -6,8 +6,5 @@
         public string UserName { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-
-        //get from token
-        //public string Role { get; set; }
     }
 }

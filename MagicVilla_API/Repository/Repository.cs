@@ -44,12 +44,22 @@ namespace MagicVilla_API.Repository
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null,string? includes = null)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null,string? includes = null
+                                               , int pageSize = 0, int pageIndex = 1)
         {
             IQueryable<T> query = _dbSet;
 
             if (filter != null)
                 query = query.Where(filter);
+
+            if (pageSize > 0)
+            {
+                if (pageSize > 100)
+                    pageSize = 100;
+
+                query = query.Skip(pageSize*(pageIndex-1)).Take(pageSize);
+            }
+
 
             if (includes != null)
             {
